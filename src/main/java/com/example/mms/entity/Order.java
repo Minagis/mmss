@@ -16,17 +16,17 @@ public class Order {
     private Integer orderStatus;
 
     @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "orders_product",
-            joinColumns = @JoinColumn(name = "order_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "product_id", referencedColumnName = "id"))
+    @JoinTable(name = "ordersproduct",
+            joinColumns = @JoinColumn(name = "orderid", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "productid", referencedColumnName = "id"))
     private Set<Product> products;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "client_id")
+    @JoinColumn(name = "clientid")
     private Client client;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "adress_id")
+    @JoinColumn(name = "adressid")
     private Address address;
 
     public Order() {

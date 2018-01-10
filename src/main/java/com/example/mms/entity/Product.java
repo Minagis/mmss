@@ -20,13 +20,13 @@ public class Product {
     private Integer amount;
 
     @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "orders_product",
-            joinColumns = @JoinColumn(name = "product_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "order_id", referencedColumnName = "id"))
+    @JoinTable(name = "ordersproduct",
+            joinColumns = @JoinColumn(name = "productid", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "orderid", referencedColumnName = "id"))
     private Set<Product> products;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "cat_id")
+    @JoinColumn(name = "catid")
     private Category category;
 
     public Product() {

@@ -17,7 +17,7 @@ public class Address {
     private Integer house;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "client_id")
+    @JoinColumn(name = "clientid")
     private Client client;
 
     public Address() {
