@@ -21,11 +21,11 @@ public class Order {
             inverseJoinColumns = @JoinColumn(name = "productid", referencedColumnName = "id"))
     private Set<Product> products;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "clientid")
     private Client client;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "adressid")
     private Address address;
 
@@ -80,19 +80,6 @@ public class Order {
         this.products = products;
     }
 
-    public Client getClient() {
-        return client;
-    }
 
-    public void setClient(Client client) {
-        this.client = client;
-    }
 
-    public Address getAddress() {
-        return address;
-    }
-
-    public void setAddress(Address address) {
-        this.address = address;
-    }
 }
