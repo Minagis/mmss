@@ -9,7 +9,7 @@ import java.util.Set;
 public class Client {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private String name;
     private String surname;
@@ -18,11 +18,11 @@ public class Client {
     private String login;
     private String password;
 
-    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "client")
     private Set<Address> addresses;
 
-    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
-    private Set<Order> orders;
+    @OneToMany(mappedBy = "client")
+    private Set<Zakaz> zakazs;
 
     public Client() {
     }
@@ -91,11 +91,11 @@ public class Client {
         this.addresses = addresses;
     }
 
-    public Set<Order> getOrders() {
-        return orders;
+    public Set<Zakaz> getZakazs() {
+        return zakazs;
     }
 
-    public void setOrders(Set<Order> orders) {
-        this.orders = orders;
+    public void setZakazs(Set<Zakaz> zakazs) {
+        this.zakazs = zakazs;
     }
 }

@@ -9,7 +9,7 @@ import java.util.Set;
 public class Product {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private String title;
     private BigDecimal price;
@@ -19,13 +19,13 @@ public class Product {
     private String description;
     private Integer amount;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "ordersproduct",
+    @ManyToMany
+    @JoinTable(name = "zakazproduct",
             joinColumns = @JoinColumn(name = "productid", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "orderid", referencedColumnName = "id"))
+            inverseJoinColumns = @JoinColumn(name = "zakazid", referencedColumnName = "id"))
     private Set<Product> products;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "catid")
     private Category category;
 

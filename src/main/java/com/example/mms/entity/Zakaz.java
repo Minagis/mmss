@@ -4,20 +4,20 @@ import java.util.Set;
 import javax.persistence.*;
 
 @Entity
-@Table (name = "order")
-public class Order {
+@Table (name = "zakaz")
+public class Zakaz {
 
     @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @GeneratedValue (strategy = GenerationType.AUTO)
     private Integer id;
     private Integer deliveryMethod;
     private Integer paymentStatus;
     private Integer paymentMethod;
-    private Integer orderStatus;
+    private Integer zakazStatus;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "ordersproduct",
-            joinColumns = @JoinColumn(name = "orderid", referencedColumnName = "id"),
+    @ManyToMany
+    @JoinTable(name = "zakazproduct",
+            joinColumns = @JoinColumn(name = "zakazid", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "productid", referencedColumnName = "id"))
     private Set<Product> products;
 
@@ -26,10 +26,10 @@ public class Order {
     private Client client;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "adressid")
+    @JoinColumn(name = "addressid")
     private Address address;
 
-    public Order() {
+    public Zakaz() {
     }
 
     public Integer getId() {
@@ -64,12 +64,12 @@ public class Order {
         this.paymentStatus = paymentStatus;
     }
 
-    public Integer getOrderStatus() {
-        return orderStatus;
+    public Integer getZakazStatus() {
+        return zakazStatus;
     }
 
-    public void setOrderStatus(Integer orderStatus) {
-        this.orderStatus = orderStatus;
+    public void setZakazStatus(Integer zakazStatus) {
+        this.zakazStatus = zakazStatus;
     }
 
     public Set<Product> getProducts() {
@@ -80,6 +80,19 @@ public class Order {
         this.products = products;
     }
 
+    public Client getClient() {
+        return client;
+    }
 
+    public void setClient(Client client) {
+        this.client = client;
+    }
 
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
 }

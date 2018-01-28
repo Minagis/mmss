@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class Address {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private String country;
     private String city;
@@ -16,7 +16,7 @@ public class Address {
     private Integer flat;
     private Integer house;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "clientid")
     private Client client;
 
@@ -55,7 +55,6 @@ public class Address {
         this.city = city;
     }
 
-
     public String getStreet() {
         return street;
     }
@@ -86,5 +85,19 @@ public class Address {
 
     public void setPostCode(Integer postCode) {
         this.postCode = postCode;
+    }
+
+    @Override
+    public String toString() {
+        return "Address{" +
+                "id=" + id +
+                ", country='" + country + '\'' +
+                ", city='" + city + '\'' +
+                ", postCode=" + postCode +
+                ", street='" + street + '\'' +
+                ", flat=" + flat +
+                ", house=" + house +
+                ", client=" + client +
+                '}';
     }
 }
