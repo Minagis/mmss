@@ -3,25 +3,22 @@ package com.example.mms.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "address")
 public class Address {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @SequenceGenerator(name = "address_generator", sequenceName = "address_sequence", allocationSize = 1)
+    @GeneratedValue(generator = "address_generator")
     private Integer id;
     private String country;
     private String city;
-    private Integer postCode;
+    private Integer postcode;
     private String street;
     private Integer flat;
     private Integer house;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "clientid")
+    @JoinColumn(name = "client_id")
     private Client client;
-
-    public Address() {
-    }
 
     public Integer getId() {
         return id;
@@ -79,12 +76,12 @@ public class Address {
         this.house = house;
     }
 
-    public Integer getPostCode() {
-        return postCode;
+    public Integer getPostcode() {
+        return postcode;
     }
 
-    public void setPostCode(Integer postCode) {
-        this.postCode = postCode;
+    public void setPostcode(Integer postcode) {
+        this.postcode = postcode;
     }
 
     @Override
@@ -93,7 +90,7 @@ public class Address {
                 "id=" + id +
                 ", country='" + country + '\'' +
                 ", city='" + city + '\'' +
-                ", postCode=" + postCode +
+                ", postcode=" + postcode +
                 ", street='" + street + '\'' +
                 ", flat=" + flat +
                 ", house=" + house +

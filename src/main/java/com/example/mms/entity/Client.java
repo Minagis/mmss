@@ -5,11 +5,11 @@ import java.sql.Timestamp;
 import java.util.Set;
 
 @Entity
-@Table(name = "client")
 public class Client {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @SequenceGenerator(name = "client_generator", sequenceName = "client_sequence", allocationSize = 1)
+    @GeneratedValue(generator = "client_generator")
     private Integer id;
     private String name;
     private String surname;
@@ -22,10 +22,7 @@ public class Client {
     private Set<Address> addresses;
 
     @OneToMany(mappedBy = "client")
-    private Set<Zakaz> zakazs;
-
-    public Client() {
-    }
+    private Set<Purchase> purchases;
 
     public Integer getId() {
         return id;
@@ -91,11 +88,11 @@ public class Client {
         this.addresses = addresses;
     }
 
-    public Set<Zakaz> getZakazs() {
-        return zakazs;
+    public Set<Purchase> getPurchases() {
+        return purchases;
     }
 
-    public void setZakazs(Set<Zakaz> zakazs) {
-        this.zakazs = zakazs;
+    public void setPurchases(Set<Purchase> purchases) {
+        this.purchases = purchases;
     }
 }

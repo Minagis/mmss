@@ -4,19 +4,16 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Table(name = "category")
 public class Category {
 
     @Id
-    @GeneratedValue (strategy = GenerationType.AUTO)
+    @SequenceGenerator(name = "category_generator", sequenceName = "category_sequence", allocationSize = 1)
+    @GeneratedValue(generator = "category_generator")
     private Integer id;
     private String type;
 
     @OneToMany(mappedBy = "category")
     private Set<Product> products;
-
-    public Category() {
-    }
 
     public Integer getId() {
         return id;

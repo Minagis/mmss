@@ -4,33 +4,30 @@ import java.util.Set;
 import javax.persistence.*;
 
 @Entity
-@Table (name = "zakaz")
-public class Zakaz {
+public class Purchase {
 
     @Id
-    @GeneratedValue (strategy = GenerationType.AUTO)
+    @SequenceGenerator(name = "purchase_generator", sequenceName = "purchase_sequence", allocationSize = 1)
+    @GeneratedValue(generator = "purchase_generator")
     private Integer id;
     private Integer deliveryMethod;
     private Integer paymentStatus;
     private Integer paymentMethod;
-    private Integer zakazStatus;
+    private Integer purchaseStatus;
 
     @ManyToMany
-    @JoinTable(name = "zakazproduct",
-            joinColumns = @JoinColumn(name = "zakazid", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "productid", referencedColumnName = "id"))
+    @JoinTable(name = "purchase_product",
+            joinColumns = @JoinColumn(name = "purchase_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "product_id", referencedColumnName = "id"))
     private Set<Product> products;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "clientid")
+    @JoinColumn(name = "client_id")
     private Client client;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "addressid")
+    @JoinColumn(name = "address_id")
     private Address address;
-
-    public Zakaz() {
-    }
 
     public Integer getId() {
         return id;
@@ -64,12 +61,12 @@ public class Zakaz {
         this.paymentStatus = paymentStatus;
     }
 
-    public Integer getZakazStatus() {
-        return zakazStatus;
+    public Integer getPurchaseStatus() {
+        return purchaseStatus;
     }
 
-    public void setZakazStatus(Integer zakazStatus) {
-        this.zakazStatus = zakazStatus;
+    public void setPurchaseStatus(Integer purchaseStatus) {
+        this.purchaseStatus = purchaseStatus;
     }
 
     public Set<Product> getProducts() {

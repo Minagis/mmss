@@ -5,11 +5,11 @@ import java.math.BigDecimal;
 import java.util.Set;
 
 @Entity
-@Table(name = "product")
 public class Product {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @SequenceGenerator(name = "product_generator", sequenceName = "product_sequence", allocationSize = 1)
+    @GeneratedValue(generator = "product_generator")
     private Integer id;
     private String title;
     private BigDecimal price;
@@ -20,17 +20,14 @@ public class Product {
     private Integer amount;
 
     @ManyToMany
-    @JoinTable(name = "zakazproduct",
-            joinColumns = @JoinColumn(name = "productid", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "zakazid", referencedColumnName = "id"))
+    @JoinTable(name = "purchase_product",
+            joinColumns = @JoinColumn(name = "product_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "purchase_id", referencedColumnName = "id"))
     private Set<Product> products;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "catid")
+    @JoinColumn(name = "category_id")
     private Category category;
-
-    public Product() {
-    }
 
     public Integer getId() {
         return id;
