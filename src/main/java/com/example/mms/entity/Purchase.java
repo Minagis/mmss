@@ -4,12 +4,8 @@ import java.util.Set;
 import javax.persistence.*;
 
 @Entity
-public class Purchase {
+public class Purchase extends AbstractEntity {
 
-    @Id
-    @SequenceGenerator(name = "purchase_generator", sequenceName = "purchase_sequence", allocationSize = 1)
-    @GeneratedValue(generator = "purchase_generator")
-    private Integer id;
     private Integer deliveryMethod;
     private Integer paymentStatus;
     private Integer paymentMethod;
@@ -28,14 +24,6 @@ public class Purchase {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "address_id")
     private Address address;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public Integer getDeliveryMethod() {
         return deliveryMethod;

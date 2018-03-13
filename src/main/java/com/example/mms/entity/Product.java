@@ -5,12 +5,8 @@ import java.math.BigDecimal;
 import java.util.Set;
 
 @Entity
-public class Product {
+public class Product extends AbstractEntity {
 
-    @Id
-    @SequenceGenerator(name = "product_generator", sequenceName = "product_sequence", allocationSize = 1)
-    @GeneratedValue(generator = "product_generator")
-    private Integer id;
     private String title;
     private BigDecimal price;
     private Integer weight;
@@ -28,14 +24,6 @@ public class Product {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
     private Category category;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public String getTitle() {
         return title;

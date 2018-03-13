@@ -3,12 +3,8 @@ package com.example.mms.entity;
 import javax.persistence.*;
 
 @Entity
-public class Address {
+public class Address extends AbstractEntity {
 
-    @Id
-    @SequenceGenerator(name = "address_generator", sequenceName = "address_sequence", allocationSize = 1)
-    @GeneratedValue(generator = "address_generator")
-    private Integer id;
     private String country;
     private String city;
     private Integer postcode;
@@ -20,12 +16,17 @@ public class Address {
     @JoinColumn(name = "client_id")
     private Client client;
 
-    public Integer getId() {
-        return id;
+    public Address() {
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public Address(String country, String city, Integer postcode, String street, Integer flat, Integer house, Client client) {
+        this.country = country;
+        this.city = city;
+        this.postcode = postcode;
+        this.street = street;
+        this.flat = flat;
+        this.house = house;
+        this.client = client;
     }
 
     public String getCountry() {
@@ -87,14 +88,14 @@ public class Address {
     @Override
     public String toString() {
         return "Address{" +
-                "id=" + id +
+                "id=" + getId() +
                 ", country='" + country + '\'' +
                 ", city='" + city + '\'' +
                 ", postcode=" + postcode +
                 ", street='" + street + '\'' +
                 ", flat=" + flat +
                 ", house=" + house +
-                ", client=" + client +
+                ", client=" + client.getId() +
                 '}';
     }
 }

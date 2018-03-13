@@ -57,11 +57,7 @@ CREATE TABLE purchase_product
   product_id INTEGER NOT NULL
 );
 
-CREATE SEQUENCE address_sequence START WITH 1 INCREMENT BY 1;
-CREATE SEQUENCE category_sequence START WITH 1 INCREMENT BY 1;
-CREATE SEQUENCE client_sequence START WITH 1 INCREMENT BY 1;
-CREATE SEQUENCE product_sequence START WITH 1 INCREMENT BY 1;
-CREATE SEQUENCE purchase_sequence START WITH 1 INCREMENT BY 1;
+CREATE SEQUENCE abstract_sequence START WITH 1 INCREMENT BY 1;
 
 ALTER TABLE address ADD CONSTRAINT address_client__fk FOREIGN KEY (client_id) REFERENCES client;
 ALTER TABLE product ADD CONSTRAINT product_category__fk FOREIGN KEY (category_id) REFERENCES category;

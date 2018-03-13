@@ -4,24 +4,12 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-public class Category {
+public class Category extends AbstractEntity {
 
-    @Id
-    @SequenceGenerator(name = "category_generator", sequenceName = "category_sequence", allocationSize = 1)
-    @GeneratedValue(generator = "category_generator")
-    private Integer id;
     private String type;
 
     @OneToMany(mappedBy = "category")
     private Set<Product> products;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public String getType() {
         return type;

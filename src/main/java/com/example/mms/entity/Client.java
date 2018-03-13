@@ -5,12 +5,8 @@ import java.sql.Timestamp;
 import java.util.Set;
 
 @Entity
-public class Client {
+public class Client extends AbstractEntity {
 
-    @Id
-    @SequenceGenerator(name = "client_generator", sequenceName = "client_sequence", allocationSize = 1)
-    @GeneratedValue(generator = "client_generator")
-    private Integer id;
     private String name;
     private String surname;
     private Timestamp birthday;
@@ -23,14 +19,6 @@ public class Client {
 
     @OneToMany(mappedBy = "client")
     private Set<Purchase> purchases;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;
