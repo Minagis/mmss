@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/category")
 public class CategoryController {
+
     private CategoryDao categoryDao;
 
     @Autowired
@@ -16,9 +18,8 @@ public class CategoryController {
         this.categoryDao = categoryDao;
     }
 
-    @RequestMapping (method = RequestMethod.GET,value = "/category/{id}")
+    @RequestMapping(method = RequestMethod.GET, value = "/{id}")
     public void getCategory(@PathVariable Integer id) {
         System.out.println(categoryDao.findOne(id));
     }
-
 }

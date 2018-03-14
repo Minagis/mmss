@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/purchase")
 public class PurchaseController {
+
     private PurchaseDao purchaseDao;
 
     @Autowired
@@ -16,8 +18,8 @@ public class PurchaseController {
         this.purchaseDao = purchaseDao;
     }
 
-    @RequestMapping (method = RequestMethod.GET,value = "/Purchase/{id}")
-    public void getPurchaseDao(@PathVariable Integer id) {
-     System.out.println(purchaseDao.findOne(id));
+    @RequestMapping(method = RequestMethod.GET, value = "/{id}")
+    public void getPurchase(@PathVariable Integer id) {
+        System.out.println(purchaseDao.findOne(id));
     }
 }

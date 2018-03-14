@@ -8,5 +8,4 @@ import java.io.Serializable;
 
 @NoRepositoryBean
 public interface AbstractDao<T extends AbstractEntity, E extends Serializable> extends CrudRepository<T, E> {
-
 }
