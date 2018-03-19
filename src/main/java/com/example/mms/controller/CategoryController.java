@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping (method = RequestMethod.GET,value = "/category")
 public class CategoryController {
+
     private CategoryDao categoryDao;
 
     @Autowired
@@ -18,8 +19,6 @@ public class CategoryController {
     }
 
     @RequestMapping (method = RequestMethod.GET,value = "/{id}")
-    public void getCategory(@PathVariable Integer id) {
-        System.out.println(categoryDao.findOne(id));
-    }
+    public void getCategory(@PathVariable Integer id) {System.out.println(categoryDao.findOne(id));}
 
 }

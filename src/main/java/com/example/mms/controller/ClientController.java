@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping (method = RequestMethod.GET, value = "/client")
 public class ClientController {
+
     private ClientDao clientDao;
 
     @Autowired
@@ -18,8 +19,6 @@ public class ClientController {
         this.clientDao = clientDao;
     }
 
-    @RequestMapping (method = RequestMethod.GET, value = "/{id}")
-    public void getClientDao(@PathVariable Integer id) {
-        System.out.println(clientDao.findOne(id));
-    }
+    @RequestMapping (method = RequestMethod.GET,value = "/{id}")
+    public void getClientDao(@PathVariable Integer id) {System.out.println(clientDao.findOne(id));}
 }

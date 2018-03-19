@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping (method = RequestMethod.GET, value = "/product")
 public class ProductController {
+
     private ProductDao productDao;
 
     @Autowired
@@ -18,9 +19,7 @@ public class ProductController {
         this.productDao = productDao;
     }
 
-    @RequestMapping (method = RequestMethod.GET, value = "/{id}")
-    public void getProductDao(@PathVariable Integer id){
-    System.out.println(productDao.findOne(id));
-    }
+    @RequestMapping (method = RequestMethod.GET,value = "/{id}")
+    public void getProductDao(@PathVariable Integer id){System.out.println(productDao.findOne(id));}
 }
 
