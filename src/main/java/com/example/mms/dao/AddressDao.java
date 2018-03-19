@@ -2,8 +2,7 @@ package com.example.mms.dao;
 
 import com.example.mms.entity.Address;
 
-
-public interface AddressDao extends AbstractDao<Address, Integer>{
+public interface AddressDao extends AbstractDao<Address, Integer> {
 
 //    Address findAddressById(Integer id);
 
