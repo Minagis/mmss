@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping (method = RequestMethod.GET,value = "/Purchase")
+@RequestMapping(value = "/Purchase")
 public class PurchaseController {
 
     private PurchaseDao purchaseDao;
@@ -18,6 +18,8 @@ public class PurchaseController {
         this.purchaseDao = purchaseDao;
     }
 
-    @RequestMapping (method = RequestMethod.GET,value = "/{id}")
-    public void getPurchaseDao(@PathVariable Integer id) {System.out.println(purchaseDao.findOne(id));}
+    @RequestMapping(method = RequestMethod.GET, value = "/{id}")
+    public void getPurchaseDao(@PathVariable Integer id) {
+        System.out.println(purchaseDao.findOne(id));
+    }
 }
