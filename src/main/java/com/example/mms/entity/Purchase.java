@@ -25,6 +25,40 @@ public class Purchase extends AbstractEntity {
     @JoinColumn(name = "address_id")
     private Address address;
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Purchase)) return false;
+
+        Purchase purchase = (Purchase) o;
+
+        if (getDeliveryMethod() != null ? !getDeliveryMethod().equals(purchase.getDeliveryMethod()) : purchase.getDeliveryMethod() != null)
+            return false;
+        if (getPaymentStatus() != null ? !getPaymentStatus().equals(purchase.getPaymentStatus()) : purchase.getPaymentStatus() != null)
+            return false;
+        if (getPaymentMethod() != null ? !getPaymentMethod().equals(purchase.getPaymentMethod()) : purchase.getPaymentMethod() != null)
+            return false;
+        if (getPurchaseStatus() != null ? !getPurchaseStatus().equals(purchase.getPurchaseStatus()) : purchase.getPurchaseStatus() != null)
+            return false;
+        if (getProducts() != null ? !getProducts().equals(purchase.getProducts()) : purchase.getProducts() != null)
+            return false;
+        if (getClient() != null ? !getClient().equals(purchase.getClient()) : purchase.getClient() != null)
+            return false;
+        return getAddress() != null ? getAddress().equals(purchase.getAddress()) : purchase.getAddress() == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getDeliveryMethod() != null ? getDeliveryMethod().hashCode() : 0;
+        result = 31 * result + (getPaymentStatus() != null ? getPaymentStatus().hashCode() : 0);
+        result = 31 * result + (getPaymentMethod() != null ? getPaymentMethod().hashCode() : 0);
+        result = 31 * result + (getPurchaseStatus() != null ? getPurchaseStatus().hashCode() : 0);
+        result = 31 * result + (getProducts() != null ? getProducts().hashCode() : 0);
+        result = 31 * result + (getClient() != null ? getClient().hashCode() : 0);
+        result = 31 * result + (getAddress() != null ? getAddress().hashCode() : 0);
+        return result;
+    }
+
     public Integer getDeliveryMethod() {
         return deliveryMethod;
     }

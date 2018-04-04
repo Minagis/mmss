@@ -20,6 +20,40 @@ public class Client extends AbstractEntity {
     @OneToMany(mappedBy = "client")
     private Set<Purchase> purchases;
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Client)) return false;
+
+        Client client = (Client) o;
+
+        if (getName() != null ? !getName().equals(client.getName()) : client.getName() != null) return false;
+        if (getSurname() != null ? !getSurname().equals(client.getSurname()) : client.getSurname() != null)
+            return false;
+        if (getBirthday() != null ? !getBirthday().equals(client.getBirthday()) : client.getBirthday() != null)
+            return false;
+        if (getEmail() != null ? !getEmail().equals(client.getEmail()) : client.getEmail() != null) return false;
+        if (getLogin() != null ? !getLogin().equals(client.getLogin()) : client.getLogin() != null) return false;
+        if (getPassword() != null ? !getPassword().equals(client.getPassword()) : client.getPassword() != null)
+            return false;
+        if (getAddresses() != null ? !getAddresses().equals(client.getAddresses()) : client.getAddresses() != null)
+            return false;
+        return getPurchases() != null ? getPurchases().equals(client.getPurchases()) : client.getPurchases() == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getName() != null ? getName().hashCode() : 0;
+        result = 31 * result + (getSurname() != null ? getSurname().hashCode() : 0);
+        result = 31 * result + (getBirthday() != null ? getBirthday().hashCode() : 0);
+        result = 31 * result + (getEmail() != null ? getEmail().hashCode() : 0);
+        result = 31 * result + (getLogin() != null ? getLogin().hashCode() : 0);
+        result = 31 * result + (getPassword() != null ? getPassword().hashCode() : 0);
+        result = 31 * result + (getAddresses() != null ? getAddresses().hashCode() : 0);
+        result = 31 * result + (getPurchases() != null ? getPurchases().hashCode() : 0);
+        return result;
+    }
+
     public String getName() {
         return name;
     }

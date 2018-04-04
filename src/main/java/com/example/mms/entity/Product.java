@@ -25,6 +25,41 @@ public class Product extends AbstractEntity {
     @JoinColumn(name = "category_id")
     private Category category;
 
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Product)) return false;
+
+        Product product = (Product) o;
+
+        if (getTitle() != null ? !getTitle().equals(product.getTitle()) : product.getTitle() != null) return false;
+        if (getPrice() != null ? !getPrice().equals(product.getPrice()) : product.getPrice() != null) return false;
+        if (getWeight() != null ? !getWeight().equals(product.getWeight()) : product.getWeight() != null) return false;
+        if (getBrand() != null ? !getBrand().equals(product.getBrand()) : product.getBrand() != null) return false;
+        if (getColor() != null ? !getColor().equals(product.getColor()) : product.getColor() != null) return false;
+        if (getDescription() != null ? !getDescription().equals(product.getDescription()) : product.getDescription() != null)
+            return false;
+        if (getAmount() != null ? !getAmount().equals(product.getAmount()) : product.getAmount() != null) return false;
+        if (getProducts() != null ? !getProducts().equals(product.getProducts()) : product.getProducts() != null)
+            return false;
+        return getCategory() != null ? getCategory().equals(product.getCategory()) : product.getCategory() == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getTitle() != null ? getTitle().hashCode() : 0;
+        result = 31 * result + (getPrice() != null ? getPrice().hashCode() : 0);
+        result = 31 * result + (getWeight() != null ? getWeight().hashCode() : 0);
+        result = 31 * result + (getBrand() != null ? getBrand().hashCode() : 0);
+        result = 31 * result + (getColor() != null ? getColor().hashCode() : 0);
+        result = 31 * result + (getDescription() != null ? getDescription().hashCode() : 0);
+        result = 31 * result + (getAmount() != null ? getAmount().hashCode() : 0);
+        result = 31 * result + (getProducts() != null ? getProducts().hashCode() : 0);
+        result = 31 * result + (getCategory() != null ? getCategory().hashCode() : 0);
+        return result;
+    }
+
     public String getTitle() {
         return title;
     }
