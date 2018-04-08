@@ -1,14 +1,16 @@
 package com.example.mms.controller;
 
-
 import com.example.mms.dao.ClientDao;
+import com.example.mms.entity.Client;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
-@RestController
+import java.sql.Timestamp;
+import java.time.LocalDate;
+
+@Controller
 @RequestMapping(value = "/client")
 public class ClientController {
 
@@ -22,5 +24,22 @@ public class ClientController {
     @RequestMapping(method = RequestMethod.GET, value = "/{id}")
     public void getClient(@PathVariable Integer id) {
         System.out.println(clientDao.findOne(id));
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/register")
+    public String showRegisterPage(Model model) {
+        model.addAttribute("client", new Client());
+        return "register";
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/register")
+    public String registerNewClient(@ModelAttribute("client") Client client) {
+        client.setName("123");
+        client.setSurname("123");
+        client.setEmail("123");
+        client.setBirthday(Timestamp.valueOf(LocalDate.of(1990, 1, 1).atStartOfDay()));
+        System.out.println(client);
+        clientDao.save(client);
+        return "redirect:/client/register";
     }
 }
