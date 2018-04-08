@@ -20,38 +20,7 @@ public class Client extends AbstractEntity {
     @OneToMany(mappedBy = "client")
     private Set<Purchase> purchases;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Client)) return false;
-
-        Client client = (Client) o;
-
-        if (getName() != null ? !getName().equals(client.getName()) : client.getName() != null) return false;
-        if (getSurname() != null ? !getSurname().equals(client.getSurname()) : client.getSurname() != null)
-            return false;
-        if (getBirthday() != null ? !getBirthday().equals(client.getBirthday()) : client.getBirthday() != null)
-            return false;
-        if (getEmail() != null ? !getEmail().equals(client.getEmail()) : client.getEmail() != null) return false;
-        if (getLogin() != null ? !getLogin().equals(client.getLogin()) : client.getLogin() != null) return false;
-        if (getPassword() != null ? !getPassword().equals(client.getPassword()) : client.getPassword() != null)
-            return false;
-        if (getAddresses() != null ? !getAddresses().equals(client.getAddresses()) : client.getAddresses() != null)
-            return false;
-        return getPurchases() != null ? getPurchases().equals(client.getPurchases()) : client.getPurchases() == null;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = getName() != null ? getName().hashCode() : 0;
-        result = 31 * result + (getSurname() != null ? getSurname().hashCode() : 0);
-        result = 31 * result + (getBirthday() != null ? getBirthday().hashCode() : 0);
-        result = 31 * result + (getEmail() != null ? getEmail().hashCode() : 0);
-        result = 31 * result + (getLogin() != null ? getLogin().hashCode() : 0);
-        result = 31 * result + (getPassword() != null ? getPassword().hashCode() : 0);
-        result = 31 * result + (getAddresses() != null ? getAddresses().hashCode() : 0);
-        result = 31 * result + (getPurchases() != null ? getPurchases().hashCode() : 0);
-        return result;
+    public Client() {
     }
 
     public String getName() {
@@ -116,5 +85,43 @@ public class Client extends AbstractEntity {
 
     public void setPurchases(Set<Purchase> purchases) {
         this.purchases = purchases;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Client client = (Client) o;
+
+        if (name != null ? !name.equals(client.name) : client.name != null) return false;
+        if (surname != null ? !surname.equals(client.surname) : client.surname != null) return false;
+        if (birthday != null ? !birthday.equals(client.birthday) : client.birthday != null) return false;
+        if (email != null ? !email.equals(client.email) : client.email != null) return false;
+        if (login != null ? !login.equals(client.login) : client.login != null) return false;
+        return password != null ? password.equals(client.password) : client.password == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = name != null ? name.hashCode() : 0;
+        result = 31 * result + (surname != null ? surname.hashCode() : 0);
+        result = 31 * result + (birthday != null ? birthday.hashCode() : 0);
+        result = 31 * result + (email != null ? email.hashCode() : 0);
+        result = 31 * result + (login != null ? login.hashCode() : 0);
+        result = 31 * result + (password != null ? password.hashCode() : 0);
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Client{" +
+                "name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", birthday=" + birthday +
+                ", email='" + email + '\'' +
+                ", login='" + login + '\'' +
+                ", password='" + password + '\'' +
+                '}';
     }
 }

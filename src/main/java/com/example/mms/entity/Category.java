@@ -11,22 +11,7 @@ public class Category extends AbstractEntity {
     @OneToMany(mappedBy = "category")
     private Set<Product> products;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Category)) return false;
-
-        Category category = (Category) o;
-
-        if (getType() != null ? !getType().equals(category.getType()) : category.getType() != null) return false;
-        return getProducts() != null ? getProducts().equals(category.getProducts()) : category.getProducts() == null;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = getType() != null ? getType().hashCode() : 0;
-        result = 31 * result + (getProducts() != null ? getProducts().hashCode() : 0);
-        return result;
+    public Category() {
     }
 
     public String getType() {
@@ -43,5 +28,27 @@ public class Category extends AbstractEntity {
 
     public void setProducts(Set<Product> products) {
         this.products = products;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Category category = (Category) o;
+
+        return type != null ? type.equals(category.type) : category.type == null;
+    }
+
+    @Override
+    public int hashCode() {
+        return type != null ? type.hashCode() : 0;
+    }
+
+    @Override
+    public String toString() {
+        return "Category{" +
+                "type='" + type + '\'' +
+                '}';
     }
 }

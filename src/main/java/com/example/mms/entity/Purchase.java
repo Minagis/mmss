@@ -25,38 +25,7 @@ public class Purchase extends AbstractEntity {
     @JoinColumn(name = "address_id")
     private Address address;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Purchase)) return false;
-
-        Purchase purchase = (Purchase) o;
-
-        if (getDeliveryMethod() != null ? !getDeliveryMethod().equals(purchase.getDeliveryMethod()) : purchase.getDeliveryMethod() != null)
-            return false;
-        if (getPaymentStatus() != null ? !getPaymentStatus().equals(purchase.getPaymentStatus()) : purchase.getPaymentStatus() != null)
-            return false;
-        if (getPaymentMethod() != null ? !getPaymentMethod().equals(purchase.getPaymentMethod()) : purchase.getPaymentMethod() != null)
-            return false;
-        if (getPurchaseStatus() != null ? !getPurchaseStatus().equals(purchase.getPurchaseStatus()) : purchase.getPurchaseStatus() != null)
-            return false;
-        if (getProducts() != null ? !getProducts().equals(purchase.getProducts()) : purchase.getProducts() != null)
-            return false;
-        if (getClient() != null ? !getClient().equals(purchase.getClient()) : purchase.getClient() != null)
-            return false;
-        return getAddress() != null ? getAddress().equals(purchase.getAddress()) : purchase.getAddress() == null;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = getDeliveryMethod() != null ? getDeliveryMethod().hashCode() : 0;
-        result = 31 * result + (getPaymentStatus() != null ? getPaymentStatus().hashCode() : 0);
-        result = 31 * result + (getPaymentMethod() != null ? getPaymentMethod().hashCode() : 0);
-        result = 31 * result + (getPurchaseStatus() != null ? getPurchaseStatus().hashCode() : 0);
-        result = 31 * result + (getProducts() != null ? getProducts().hashCode() : 0);
-        result = 31 * result + (getClient() != null ? getClient().hashCode() : 0);
-        result = 31 * result + (getAddress() != null ? getAddress().hashCode() : 0);
-        return result;
+    public Purchase() {
     }
 
     public Integer getDeliveryMethod() {
@@ -113,5 +82,40 @@ public class Purchase extends AbstractEntity {
 
     public void setAddress(Address address) {
         this.address = address;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Purchase purchase = (Purchase) o;
+
+        if (deliveryMethod != null ? !deliveryMethod.equals(purchase.deliveryMethod) : purchase.deliveryMethod != null)
+            return false;
+        if (paymentStatus != null ? !paymentStatus.equals(purchase.paymentStatus) : purchase.paymentStatus != null)
+            return false;
+        if (paymentMethod != null ? !paymentMethod.equals(purchase.paymentMethod) : purchase.paymentMethod != null)
+            return false;
+        return purchaseStatus != null ? purchaseStatus.equals(purchase.purchaseStatus) : purchase.purchaseStatus == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = deliveryMethod != null ? deliveryMethod.hashCode() : 0;
+        result = 31 * result + (paymentStatus != null ? paymentStatus.hashCode() : 0);
+        result = 31 * result + (paymentMethod != null ? paymentMethod.hashCode() : 0);
+        result = 31 * result + (purchaseStatus != null ? purchaseStatus.hashCode() : 0);
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Purchase{" +
+                "deliveryMethod=" + deliveryMethod +
+                ", paymentStatus=" + paymentStatus +
+                ", paymentMethod=" + paymentMethod +
+                ", purchaseStatus=" + purchaseStatus +
+                '}';
     }
 }

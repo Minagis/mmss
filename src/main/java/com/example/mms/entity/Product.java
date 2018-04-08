@@ -25,39 +25,7 @@ public class Product extends AbstractEntity {
     @JoinColumn(name = "category_id")
     private Category category;
 
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Product)) return false;
-
-        Product product = (Product) o;
-
-        if (getTitle() != null ? !getTitle().equals(product.getTitle()) : product.getTitle() != null) return false;
-        if (getPrice() != null ? !getPrice().equals(product.getPrice()) : product.getPrice() != null) return false;
-        if (getWeight() != null ? !getWeight().equals(product.getWeight()) : product.getWeight() != null) return false;
-        if (getBrand() != null ? !getBrand().equals(product.getBrand()) : product.getBrand() != null) return false;
-        if (getColor() != null ? !getColor().equals(product.getColor()) : product.getColor() != null) return false;
-        if (getDescription() != null ? !getDescription().equals(product.getDescription()) : product.getDescription() != null)
-            return false;
-        if (getAmount() != null ? !getAmount().equals(product.getAmount()) : product.getAmount() != null) return false;
-        if (getProducts() != null ? !getProducts().equals(product.getProducts()) : product.getProducts() != null)
-            return false;
-        return getCategory() != null ? getCategory().equals(product.getCategory()) : product.getCategory() == null;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = getTitle() != null ? getTitle().hashCode() : 0;
-        result = 31 * result + (getPrice() != null ? getPrice().hashCode() : 0);
-        result = 31 * result + (getWeight() != null ? getWeight().hashCode() : 0);
-        result = 31 * result + (getBrand() != null ? getBrand().hashCode() : 0);
-        result = 31 * result + (getColor() != null ? getColor().hashCode() : 0);
-        result = 31 * result + (getDescription() != null ? getDescription().hashCode() : 0);
-        result = 31 * result + (getAmount() != null ? getAmount().hashCode() : 0);
-        result = 31 * result + (getProducts() != null ? getProducts().hashCode() : 0);
-        result = 31 * result + (getCategory() != null ? getCategory().hashCode() : 0);
-        return result;
+    public Product() {
     }
 
     public String getTitle() {
@@ -130,5 +98,46 @@ public class Product extends AbstractEntity {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Product product = (Product) o;
+
+        if (title != null ? !title.equals(product.title) : product.title != null) return false;
+        if (price != null ? !price.equals(product.price) : product.price != null) return false;
+        if (weight != null ? !weight.equals(product.weight) : product.weight != null) return false;
+        if (brand != null ? !brand.equals(product.brand) : product.brand != null) return false;
+        if (color != null ? !color.equals(product.color) : product.color != null) return false;
+        if (description != null ? !description.equals(product.description) : product.description != null) return false;
+        return amount != null ? amount.equals(product.amount) : product.amount == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = title != null ? title.hashCode() : 0;
+        result = 31 * result + (price != null ? price.hashCode() : 0);
+        result = 31 * result + (weight != null ? weight.hashCode() : 0);
+        result = 31 * result + (brand != null ? brand.hashCode() : 0);
+        result = 31 * result + (color != null ? color.hashCode() : 0);
+        result = 31 * result + (description != null ? description.hashCode() : 0);
+        result = 31 * result + (amount != null ? amount.hashCode() : 0);
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "title='" + title + '\'' +
+                ", price=" + price +
+                ", weight=" + weight +
+                ", brand='" + brand + '\'' +
+                ", color='" + color + '\'' +
+                ", description='" + description + '\'' +
+                ", amount=" + amount +
+                '}';
     }
 }

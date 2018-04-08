@@ -16,34 +16,6 @@ public class Address extends AbstractEntity {
     @JoinColumn(name = "client_id")
     private Client client;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Address)) return false;
-
-        Address address = (Address) o;
-
-        if (country != null ? !country.equals(address.country) : address.country != null) return false;
-        if (city != null ? !city.equals(address.city) : address.city != null) return false;
-        if (postcode != null ? !postcode.equals(address.postcode) : address.postcode != null) return false;
-        if (street != null ? !street.equals(address.street) : address.street != null) return false;
-        if (flat != null ? !flat.equals(address.flat) : address.flat != null) return false;
-        if (house != null ? !house.equals(address.house) : address.house != null) return false;
-        return client != null ? client.equals(address.client) : address.client == null;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = country != null ? country.hashCode() : 0;
-        result = 31 * result + (city != null ? city.hashCode() : 0);
-        result = 31 * result + (postcode != null ? postcode.hashCode() : 0);
-        result = 31 * result + (street != null ? street.hashCode() : 0);
-        result = 31 * result + (flat != null ? flat.hashCode() : 0);
-        result = 31 * result + (house != null ? house.hashCode() : 0);
-        result = 31 * result + (client != null ? client.hashCode() : 0);
-        return result;
-    }
-
     public Address() {
     }
 
@@ -113,5 +85,41 @@ public class Address extends AbstractEntity {
         this.postcode = postcode;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
+        Address address = (Address) o;
+
+        if (country != null ? !country.equals(address.country) : address.country != null) return false;
+        if (city != null ? !city.equals(address.city) : address.city != null) return false;
+        if (postcode != null ? !postcode.equals(address.postcode) : address.postcode != null) return false;
+        if (street != null ? !street.equals(address.street) : address.street != null) return false;
+        if (flat != null ? !flat.equals(address.flat) : address.flat != null) return false;
+        return house != null ? house.equals(address.house) : address.house == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = country != null ? country.hashCode() : 0;
+        result = 31 * result + (city != null ? city.hashCode() : 0);
+        result = 31 * result + (postcode != null ? postcode.hashCode() : 0);
+        result = 31 * result + (street != null ? street.hashCode() : 0);
+        result = 31 * result + (flat != null ? flat.hashCode() : 0);
+        result = 31 * result + (house != null ? house.hashCode() : 0);
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Address{" +
+                "country='" + country + '\'' +
+                ", city='" + city + '\'' +
+                ", postcode=" + postcode +
+                ", street='" + street + '\'' +
+                ", flat=" + flat +
+                ", house=" + house +
+                '}';
+    }
 }
